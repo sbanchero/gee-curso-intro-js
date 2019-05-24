@@ -35,10 +35,8 @@ Ambos son clientes que se conectan a la API de GEE.
 
 
 ```Javascript
-
 var start_date = "2018-12-01";
 var end_date   = "2019-03-31";
-
 var Landsat8SRT1 = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR")
                      .filterBounds(limite)
                      .filterDate(start_date, end_date);
@@ -50,13 +48,42 @@ print("# Escenas", Landsat8SRT1.size())
 
 ## Estructuras de datos para gestión de datos espaciales
 
-Acá agregar mini códigos de ejemplo.....
+### ee.Image
 
- * ee.Image
- * ee.Feature
- * ee.Geometry
- * ee.ImageCollection
- * ee.FeatureCollection
+```Javascript
+var escena = ee.Image('LANDSAT/LC08/C01/T1_SR/LC08_225086_20181230');
+// Objeto Image
+print(escena)
+// Lista con los nombres de las bandas
+print(escena.bandNames())
+// Objeto Image de un subconjunto de bandas que son renombradas
+print(escena.select(["B2", "B3", "B4"],["blue","green","red"]))
+```
+
+### ee.Geometry
+
+```Javascript
+var un_poligono = ee.Geometry.Polygon(
+        [[[-60.024, -36.816],
+          [-60.024, -36.888],
+          [-59.927, -36.888],
+          [-59.927, -36.816]]], null, false);
+          
+print("Un Polígono:", un_poligono);
+print("Área m2:", un_poligono.area(1));
+print("Área km2:", un_poligono.area(1).multiply(0.0001).ceil());
+```
+
+### ee.Feature
+
+```Javascript
+
+```
+
+
+### ee.ImageCollection
+
+### ee.FeatureCollection
 
 
 ## Otras estructuras de datos
@@ -64,7 +91,6 @@ Acá agregar mini códigos de ejemplo.....
   * ee.Dictionary
   * ee.List
   * ee.Array
-  * ee.Geometry
   * ee.Date
   * ee.Number
   * ee.String
@@ -72,11 +98,13 @@ Acá agregar mini códigos de ejemplo.....
 Algoritmos: Invocar métodos de un objeto, llamar algoritmos definidos en la API y definir nuevas funciones.
 
 
-## Agregar datos a un mapa.
+## Trabajar con colecciones
 
+  * Filtrar colecciones: 
+    * Imágenes
+    * Features
 
-
-  * Buscar imágenes, colecciones de imágenes y colecciones de features.
+## Trabajar con imáge 
     * Álgebra de bandas. Operadores: matemáticos, relacionales y booleanos.
     * Función _map_: ¿qué hacer en lugar de un bucle for?
     * Operadores de reducción.
