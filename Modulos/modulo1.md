@@ -13,19 +13,61 @@
     - __Assets__: Espacio de almacenamiento de nuestros datos, de __*manera gratuita*__ disponemos de __¡¡250GB!!__
  - __Editor de código fuente:__ 
 
+## Los datos disponibles
 
-## ¿Cómo funciona el cliente CE?
+![Datos-Disponibles](imgs/catalogo.png)
+
+
+## ¿Cómo utilizar GEE?
+
+ - Javascript API
+    - Interactive Code Editor
+    - Node.js*
+
+ - Python API
+	- Python module
+	- Web Apps with Appengine
+	- Jupyter Notebooks*
+
+Ambos son clientes que se conectan a la API de GEE.
 
 ## ¿Cómo se corre un scripts en CE?
 
 
+```Javascript
+
+var start_date = "2018-12-01";
+var end_date   = "2019-03-31";
+
+var Landsat8SRT1 = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR")
+                     .filterBounds(limite)
+                     .filterDate(start_date, end_date);
+                     
+print("# Escenas", Landsat8SRT1.size())
+```
+
+    https://code.earthengine.google.com/39d64cf21b212c5d7137549edcb2f7ac
+
 ## Estructuras de datos para gestión de datos espaciales
 
- * Image, Feature, Geometry, ImageCollection y FeatureCollection. 
+Acá agregar mini códigos de ejemplo.....
+
+ * ee.Image
+ * ee.Feature
+ * ee.Geometry
+ * ee.ImageCollection
+ * ee.FeatureCollection
+
 
 ## Otras estructuras de datos
 
-Dictionary, List, Array, Geometry, Date, Number y String.
+  * ee.Dictionary
+  * ee.List
+  * ee.Array
+  * ee.Geometry
+  * ee.Date
+  * ee.Number
+  * ee.String
 
 Algoritmos: Invocar métodos de un objeto, llamar algoritmos definidos en la API y definir nuevas funciones.
 
