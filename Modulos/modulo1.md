@@ -77,35 +77,89 @@ print("Área km2:", un_poligono.area(1).multiply(0.0001).ceil());
 ### ee.Feature
 
 ```Javascript
-
+var propiedades = {"Nombre": "Lote 1", "Descripcion": "Cultivos de Invierno"}
+var un_feature = ee.Feature(un_poligono, propiedades)
+print("Un Feature:", un_feature)
+print("Área km2:", un_feature.area(1).multiply(0.0001))
+print("Un Feature:", ee.String(un_feature.get("Nombre")))
 ```
+
+## Trabajar con colecciones
+
+![IC](imgs/image-collection.png)
 
 
 ### ee.ImageCollection
 
+```Javascript
+var ic_landsat8_SR = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR");
+var periodo_1 = {
+  start_date: "2017-03-01",
+  end_date:   "2017-06-30",
+}
+var ic_otoño = ic_landsat8_SR
+                  .filterBounds(limite)
+                  //.filterDate(periodo_1.start_date, periodo_1.end_date)
+                  //.filterMetadata("CLOUD_COVER", "less_than", 10)
+                  //.filterMetadata("WRS_PATH", "equals", 225)
+                  //.filterMetadata("WRS_ROW", "equals", 86)
+                  //.select(["B2","B3","B4","B5","B6"]);
+print(ic_otoño);
+print(ic_otoño.mosaic())
+```
+
 ### ee.FeatureCollection
 
+```Javascript
+var fc_deptos = ee.FeatureCollection("users/santiagobanchero/curso-gee/departamentos");
+print("# Deptos:", fc_deptos.size())
+print("Un Feature:", fc_deptos.first())
 
-## Otras estructuras de datos
+var partido_azul = fc_deptos.filterMetadata("NAM", "equals", "Azul");
+print("Feature Azul:", partido_azul);
+print("Superficie Azul:", ee.Feature(partido_azul.first()).area().multiply(0.0001));
 
-  * ee.Dictionary
-  * ee.List
-  * ee.Array
-  * ee.Date
-  * ee.Number
-  * ee.String
+```
+## Agregar layers al mapa
 
-Algoritmos: Invocar métodos de un objeto, llamar algoritmos definidos en la API y definir nuevas funciones.
+## Configurar la visualización de rasters
+```Javascript
+var vis_RGB = {bands: ["B4","B3","B2"], min: 66, max: 1600}
+
+var vis_FalsoColor = {
+    bands: ["B5","B4","B3"], 
+    min: 150, 
+    max: 5300, 
+    gamma: 1.4}
+
+Map.addLayer(mosaico, vis_RGB, "RGB");
+Map.addLayer(mosaico, vis_FalsoColor, "Falso Color");
+Map.setOptions("HYBRID");
+```
+
+## Operadores de ee.Image
+
+### Álgebra de bandas
 
 
-## Trabajar con colecciones
+* Operadores: matemáticos, relacionales y booleanos
+* Creación de máscaras.
+* Operador _where_
 
-  * Filtrar colecciones: 
-    * Imágenes
-    * Features
 
-## Trabajar con imáge 
-    * Álgebra de bandas. Operadores: matemáticos, relacionales y booleanos.
-    * Función _map_: ¿qué hacer en lugar de un bucle for?
-    * Operadores de reducción.
-    * Creación de máscaras.
+## Función _map_: ¿qué hacer en lugar de un bucle for?
+
+
+## Operadores de reducción.
+
+
+# Referencias
+
+* [IMAGE PROCESSING ALGORITHMS PART 6: GAMMA CORRECTION](https://www.dfstudios.co.uk/articles/programming/image-programming-algorithms/image-processing-algorithms-part-6-gamma-correction/)
+
+
+
+
+
+
+
