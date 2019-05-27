@@ -123,29 +123,89 @@ print("Superficie Azul:", ee.Feature(partido_azul.first()).area().multiply(0.000
 ## Agregar layers al mapa
 
 ## Configurar la visualización de rasters
+
 ```Javascript
-var vis_RGB = {bands: ["B4","B3","B2"], min: 66, max: 1600}
+var vis_RGB = {
+    bands: ["B4","B3","B2"], 
+    min: 66, 
+    max: 1600}
 
 var vis_FalsoColor = {
     bands: ["B5","B4","B3"], 
     min: 150, 
     max: 5300, 
     gamma: 1.4}
+    
+var vis_Paleta = {
+    bands: ["B4"], 
+    min: 50, 
+    max: 1400, 
+    palette:['#d73027','#fc8d59','#fee08b','#ffffbf','#d9ef8b','#91cf60','#1a9850']}
 
-Map.addLayer(mosaico, vis_RGB, "RGB");
-Map.addLayer(mosaico, vis_FalsoColor, "Falso Color");
+Map.addLayer(mosaico, vis_RGB, "RGB", false);
+Map.addLayer(mosaico, vis_FalsoColor, "Falso Color", false);
+Map.addLayer(mosaico, vis_Paleta, "Paleta", false);
 Map.setOptions("HYBRID");
+```
+
+## Configurar la visualización de vectores
+
+```Javascript
+var fc_deptos = ee.FeatureCollection("users/santiagobanchero/curso-gee/departamentos");
+var partido_azul = fc_deptos.filterMetadata("NAM", "equals", "Azul");
+Map.addLayer(fc_deptos, {color: "330088"}, "Departamentos")
+Map.addLayer(partido_azul, {color: "AA0088"}, "Partido de Azul")
+Map.addLayer(fc_deptos, {}, "Deptos")
+Map.centerObject(partido_azul)
 ```
 
 ## Operadores de ee.Image
 
-### Álgebra de bandas
+### Operaciones sobre ee.Image
+
+Vamos a empezar realizando un histograma de B4, la idea es que podamos identificar las colas del histograma con alguna cobertura.
+
+```Javascript
+var histogram = ui.Chart.image.histogram({
+  image: mosaico.select(["B4"]),
+  region: limite,
+  scale: 30
+});
+
+histogram.setOptions({
+  title: 'Histograma de B4'
+});
+
+print(histogram);
+```
+![histograma](imgs/hist-b4-image.png)
+
+```Javascript
+var B4_bin_inicio = mosaico.lte(192);
+var B4_bin_final  = mosaico.gte(1200);
+
+var mask_B4_bin_inicio = B4_bin_inicio.mask(B4_bin_inicio)
+var mask_B4_bin_final = B4_bin_final.mask(B4_bin_final)
 
 
-* Operadores: matemáticos, relacionales y booleanos
-* Creación de máscaras.
+var vis_RGB = {bands: ["B4","B3","B2"], min: 66, max: 1600}
+
+var vis_Bin_inicio = {bands: ["B4"], min: 0, max: 1, palette: ['#ffff00']}
+var vis_Bin_final = {bands: ["B4"], min: 0, max: 1, palette: ['#d73027']}
+
+Map.addLayer(mosaico, vis_RGB, "RGB", false);
+Map.addLayer(mask_B4_bin_final, vis_Bin_final, "Bin Final", false);
+Map.addLayer(mask_B4_bin_inicio, vis_Bin_inicio, "Bin Inicio", false);
+
+Map.setOptions("HYBRID");
+```
+
+## Creación de máscaras.
+
+
+
+
 * Operador _where_
-
 
 ## Función _map_: ¿qué hacer en lugar de un bucle for?
 
