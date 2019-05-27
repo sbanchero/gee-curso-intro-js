@@ -35,6 +35,7 @@ Ambos son clientes que se conectan a la API de GEE.
 
 
 ```Javascript
+// Ejemplo 1
 var start_date = "2018-12-01";
 var end_date   = "2019-03-31";
 var Landsat8SRT1 = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR")
@@ -44,13 +45,16 @@ var Landsat8SRT1 = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR")
 print("# Escenas", Landsat8SRT1.size())
 ```
 
-    https://code.earthengine.google.com/39d64cf21b212c5d7137549edcb2f7ac
+## Repositorio del curso en GEE
+  https://code.earthengine.google.com/?accept_repo=users/santiagobanchero/curso-gee
 
 ## Estructuras de datos para gestión de datos espaciales
 
 ### ee.Image
 
 ```Javascript
+// Ejemplo 2
+
 var escena = ee.Image('LANDSAT/LC08/C01/T1_SR/LC08_225086_20181230');
 // Objeto Image
 print(escena)
@@ -92,6 +96,7 @@ print("Un Feature:", ee.String(un_feature.get("Nombre")))
 ### ee.ImageCollection
 
 ```Javascript
+// Ejemplo 3
 var ic_landsat8_SR = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR");
 var periodo_1 = {
   start_date: "2017-03-01",
@@ -125,6 +130,7 @@ print("Superficie Azul:", ee.Feature(partido_azul.first()).area().multiply(0.000
 ## Configurar la visualización de rasters
 
 ```Javascript
+// Ejemplo 4
 var vis_RGB = {
     bands: ["B4","B3","B2"], 
     min: 66, 
@@ -166,6 +172,7 @@ Map.centerObject(partido_azul)
 Vamos a empezar realizando un histograma de B4, la idea es que podamos identificar las colas del histograma con alguna cobertura.
 
 ```Javascript
+// Ejemplo 5
 var histogram = ui.Chart.image.histogram({
   image: mosaico.select(["B4"]),
   region: limite,
@@ -181,6 +188,7 @@ print(histogram);
 ![histograma](imgs/hist-b4-image.png)
 
 ```Javascript
+// Ejemplo 5
 var B4_bin_inicio = mosaico.lte(192);
 var B4_bin_final  = mosaico.gte(1200);
 
@@ -202,13 +210,65 @@ Map.setOptions("HYBRID");
 
 ## Creación de máscaras.
 
+```Javascript
+// Ejemplo 6
+// Generamos una nueva imagen del bin 1 del histograma
+var B4_bin_inicio = mosaico.lte(320).and(mosaico.gte(200));
+var B4_bin_final  = mosaico.gte(900);
+var B4_bin_centro  = mosaico.gte(400).and(mosaico.lte(700));
+var B4_bin_agua  = mosaico.lte(70);
+
+var mask_B4_bin_inicio = B4_bin_inicio.mask(B4_bin_inicio)
+var mask_B4_bin_final = B4_bin_final.mask(B4_bin_final)
+var mask_B4_bin_centro = B4_bin_centro.mask(B4_bin_centro)
+var mask_B4_bin_agua = B4_bin_agua.mask(B4_bin_agua)
+
+var vis_RGB = {bands: ["B4","B3","B2"], min: 66, max: 1600}
+
+var vis_Bin_inicio = {bands: ["B4"], min: 0, max: 1, palette: ['#ffff00']};
+var vis_Bin_final = {bands: ["B4"], min: 0, max: 1, palette: ['#d73027']};
+var vis_Bin_centro = {bands: ["B4"], min: 0, max: 1, palette: ['#000027']};
+var vis_Bin_agua = {bands: ["B4"], min: 0, max: 1, palette: ['#0000FF']};
+
+Map.addLayer(mosaico, vis_RGB, "RGB", false);
+Map.addLayer(mask_B4_bin_final, vis_Bin_final, "Bin Final", false);
+Map.addLayer(mask_B4_bin_inicio, vis_Bin_inicio, "Bin Inicio", false);
+Map.addLayer(mask_B4_bin_centro, vis_Bin_centro, "Bin centro", false);
+Map.addLayer(mask_B4_bin_agua, vis_Bin_agua, "Bin agua", false);
+Map.setOptions("HYBRID");
+```
+![histograma](imgs/mascaras.png)
 
 
+## Operador _where_
 
-* Operador _where_
+Con __where__ podemos realizar reemplazos de valores de pixeles.
 
-## Función _map_: ¿qué hacer en lugar de un bucle for?
+```Javascript
+var bin_1  = mosaico_band.lte(90);
+var bin_2  = mosaico_band.gt(90).and(mosaico_band.lte(320)).multiply(2);
+var bin_3  = mosaico_band.gt(320).and(mosaico_band.lte(720)).multiply(3);
+var bin_4  = mosaico_band.gt(720).and(mosaico_band.lte(900)).multiply(4);
+var bin_5  = mosaico_band.gt(900).multiply(5);
 
+var mosaico_discreto = bin_1
+                          .add(bin_2)
+                          .add(bin_3)
+                          .add(bin_4)
+                          .add(bin_5);
+
+var banda_azul = mosaico.select("B2");
+var nubes = banda_azul.gte(560);
+
+mosaico_discreto = mosaico_discreto.where(nubes, 0);
+
+```
+![hwhere](imgs/where.png)
+
+
+## _map_: ¿qué hacer en lugar de un bucle for?
+
+GEE maneja un esquema de funciones de __Map/Reduce__
 
 ## Operadores de reducción.
 
