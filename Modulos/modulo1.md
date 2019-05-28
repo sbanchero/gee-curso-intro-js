@@ -308,9 +308,8 @@ Map.addLayer(ic_2017_calc, {bands:["B5"],min:1, max: 1, palette: ['#e41a1c','#37
 
 ```
 var ic_2017_calc = ic_2017.map(function(img){
-    
     var calculada = img.select("B2").gte(520);
-    
+
     return calculada;
 });
 
