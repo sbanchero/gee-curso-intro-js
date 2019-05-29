@@ -52,7 +52,8 @@ var rf_fit = ee.Classifier.randomForest( parametros )
 
 Ejemplo Clasificación
 
-  https://code.earthengine.google.com/bd147d0440dc07b0ac6c4fe6f78f5a59
+ * Código de ejemplo: [https://code.earthengine.google.com/bd147d0440dc07b0ac6c4fe6f78f5a59](https://code.earthengine.google.com/bd147d0440dc07b0ac6c4fe6f78f5a59)
+ * Assets: [https://docs.google.com/document/d/1x9rLs_0WZ8pJf7U_s4QptHKDyTSzJSJ9S4dFEG5dnxY/edit?usp=sharing](https://docs.google.com/document/d/1x9rLs_0WZ8pJf7U_s4QptHKDyTSzJSJ9S4dFEG5dnxY/edit?usp=sharing) 
 
 
 ## Evaluación de las clasificaciones: Matriz de confusión, Exactitud, Kappa.
