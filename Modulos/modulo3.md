@@ -46,7 +46,6 @@ var add_variables = function(image) {
     var im = do_ndvi( image )
     im = im.addBands( do_gndvi(image) )
              .addBands( do_ndsi(image)  )
-             .addBands( do_gndvi(image) )
              .addBands( do_ndbai(image) )
 
     im = im.set("system:time_start", image.get('system:time_start'))
