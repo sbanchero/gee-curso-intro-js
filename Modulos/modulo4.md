@@ -4,7 +4,7 @@
 
 ```Javascript
 // Muestreo
-var muestras = agua.merge(cultivos).merge(bosques);
+var muestras = agua.merge(cultivos).merge(bosques).merge(ganaderia);
 
 // Extracciones de valores de las bandas
 var fc_muestras_bandas = stack_clasificacion
