@@ -50,6 +50,11 @@ var rf_fit = ee.Classifier.randomForest( parametros )
                            .train(trainset, 'clase', bandas);
 ```
 
+Ejemplo Clasificación
+
+  https://code.earthengine.google.com/726c4c67264a813d2312d5fc38b6e302
+
+
 ## Evaluación de las clasificaciones: Matriz de confusión, Exactitud, Kappa.
 
 ```Javascript
