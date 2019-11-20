@@ -24,7 +24,7 @@ Las personas que tomen el curso deberían tener __nociones básicas__ de:
 
 ## Contenidos
 
- * __Módulo 1: Conceptos básicos de EE.__
+ * [__Módulo 1: Conceptos básicos de EE.__](https://github.com/sbanchero/gee-curso-intro-js/blob/master/Modulos/modulo1.md)
     * Descripción de la herramienta Code Editor.
     * Cómo correr scripts en GEE y cómo funciona el cliente.
     * Estructuras de datos para gestión de datos espaciales: Image, Feature, Geometry, ImageCollection y FeatureCollection. Otras estructuras de datos: Dictionary, List, Array, Geometry, Date, Number y String.
@@ -36,18 +36,18 @@ Las personas que tomen el curso deberían tener __nociones básicas__ de:
     * Operadores de reducción.
     * Creación de máscaras.
 
- * __Módulo 2: Gestión de almacenamiento.__
+ * [__Módulo 2: Gestión de almacenamiento.__](https://github.com/sbanchero/gee-curso-intro-js/blob/master/Modulos/modulo2.md)
     * Assets: Cómo persistir contenidos. Organización de contenidos.
     * Tipos de contenidos: Image, ImageCollection y Tables.
     * Uso de metadatos para la organización de contenidos.
 
- * __Módulo 3: Índices espectrales y transformaciones.__
+ * [__Módulo 3: Índices espectrales y transformaciones.__](https://github.com/sbanchero/gee-curso-intro-js/blob/master/Modulos/modulo3.md)
     * Índices normalizados.
     * Definición de expresiones.
     * Transformaciones lineales.
     * Construcción de *features spaces* a partir de índices.
 
- * __Módulo 4: Clasificación supervisada__
+ * [__Módulo 4: Clasificación supervisada__](https://github.com/sbanchero/gee-curso-intro-js/blob/master/Modulos/modulo4.md)
     * Generación de conjuntos de muestras.
     * Definición de un esquema de holdout para clasificación.
     * Algoritmos básicos para clasificación supervisada: CART, SVM y Random Forest. Parametrización.

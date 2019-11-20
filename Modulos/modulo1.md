@@ -4,7 +4,7 @@
 
 [Code Editor](https://code.earthengine.google.com) (CE) es uno de los clientes para comunicarnos con la API de Google Earth Engine.
 
-![Interfaz-Code-Editor](https://developers.google.com/earth-engine/images/Playground_diagram_v3_crop.png)
+![Interfaz-Code-Editor](https://developers.google.com/earth-engine/images/Code_editor.png)
 
  - __Buscador__: Herramienta de búsqueda de datos disponibles en la plataforma. Además, podemos buscar lugares y posicionar el mapa a partir de un topónimo.
  - __Panel Izquierdo__
