@@ -19,7 +19,7 @@
 
 ![](imgs/catalogo.gif)
 
-![](imgs/medium.svg?sanitize=1) [Lectura Recomendada](https://medium.com/google-earth/our-latest-additions-to-the-earth-engine-data-catalog-ded9c563f676)
+![](imgs/medium.png) [Lectura Recomendada](https://medium.com/google-earth/our-latest-additions-to-the-earth-engine-data-catalog-ded9c563f676)
 
 
 ## ¿Cómo utilizar GEE?
