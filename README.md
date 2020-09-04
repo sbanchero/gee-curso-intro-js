@@ -62,6 +62,9 @@ Las personas que tomen el curso deberían tener __nociones básicas__ de:
   * Guías. [ [Ir](https://developers.google.com/earth-engine/) ]
   * Earth Engine resources for higher education. [ [Ir](https://developers.google.com/earth-engine/edu) ]
 
+## ¿Cómo citar este curso?
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4014437.svg)](https://doi.org/10.5281/zenodo.4014437)
+Santiago Banchero. (2019, May). sbanchero/gee-curso-intro-js: Version1.1 (Version v1.1). Zenodo. http://doi.org/10.5281/zenodo.4014437
 
 
 
