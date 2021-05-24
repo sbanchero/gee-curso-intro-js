@@ -93,7 +93,8 @@ Las declaraciones condicionales son compatibles con __if__ y __else__; las puede
 
 
 ```Javascript
-// Ejemplo 1: Es una validación del día juliano simple, si el valos de dia_juliano esta dentro del rango esperado tenemos un mensaje de avance y de lo contrario un error
+// Ejemplo 1: Es una validación del día juliano simple, si el valos de dia_juliano esta 
+// dentro del rango esperado tenemos un mensaje de avance y de lo contrario un error
 
 var dia_juliano = 30;
 
@@ -109,7 +110,7 @@ if(dia_juliano >= 1 && dia_juliano <= 365){
 
 
 ```Javascript
-// Ejemplo 2
+// Ejemplo 2: Según el valor del día juliano retorna la estación del año.
 
 var dia_juliano = 30;
 var estacion = null;
@@ -206,7 +207,15 @@ for(var i = 0; i< años.length; i++){
 }
 ```
 
+## Tareas
 
+Pruebe los snippet de cada ejemplo y corralos en la herramienta [Playcode.io](https://playcode.io/new/).
+
+Resolver los siguientes ejercicios
+
+ 1. Sabiendo que el año inicial es 2010 escriba un código que imprima un array con ese año y los 9 posteriores (utilice un **for**).
+ 2. Escriba un objeto que se llame __corrida__ que tenga dos atributos: 1) __pi__ con el valor 3.1416, 2) __azimuth__ con el valor 90 y 3) __fechas__ una arreglo con las fecha 2021-05-01 y 2021-06-01. Imprima cada atributo por separado. 
+ 3. Escriba una función que reciba como parámetro un arreglo con una lista de temperaturas, Ej: [12.1, 13.5, 11.9, 15.6] y retorne la media.
 
 # Referencias
 
