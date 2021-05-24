@@ -275,7 +275,7 @@ mosaico_discreto = mosaico_discreto.where(nubes, 0);
 ## _map_: ¿qué hacer en lugar de un bucle for?
 
 * ¿Por qué no utilizar bucles en GEE?
-* ¿Qué hace _map_? [Vamos a un ppt](https://docs.google.com/presentation/d/1iZtkBNzl2HBWFT0wEhwCov89kyiBO7rSHcmMa6WNMa8/edit?usp=sharing)
+* ¿Qué hace _map_? [Vamos a un ppt](https://docs.google.com/presentation/d/1iZtkBNzl2HBWFT0wEhwCov89kyiBO7rSHcmMa6WNMa8/edit#slide=id.g2274af231f_0_100)
 
 GEE maneja un esquema de funciones de __Map/Reduce__
 
