@@ -214,7 +214,7 @@ Pruebe los snippet de cada ejemplo y corralos en la herramienta [Playcode.io](ht
 Resolver los siguientes ejercicios
 
  1. Sabiendo que el año inicial es 2010 escriba un código que imprima un array con ese año y los 9 posteriores (utilice un **for**).
- 2. Escriba un objeto que se llame __corrida__ que tenga dos atributos: 1) __pi__ con el valor 3.1416, 2) __azimuth__ con el valor 90 y 3) __fechas__ una arreglo con las fecha 2021-05-01 y 2021-06-01. Imprima cada atributo por separado. 
+ 2. Escriba un objeto que se llame __corrida__ que tenga tres atributos: 1) __pi__ con el valor 3.1416, 2) __azimuth__ con el valor 90 y 3) __fechas__ un arreglo con las fecha 2021-05-01 y 2021-06-01. Imprima cada atributo por separado. 
  3. Escriba una función que reciba como parámetro un arreglo con una lista de temperaturas, Ej: [12.1, 13.5, 11.9, 15.6] y retorne la media.
 
 # Referencias
