@@ -19,8 +19,10 @@
 
 ![](imgs/catalogo.gif)
 
-![](imgs/medium.png) [Lectura Recomendada](https://medium.com/google-earth/our-latest-additions-to-the-earth-engine-data-catalog-ded9c563f676)
+Para más detalle pueden consultar el Catálogo de GEE:
 
+ - [Earth Engine Data Catalog](https://developers.google.com/earth-engine/datasets/catalog). Pueden buscar y enviar sugerencias de nuevos datasets a incorporar.
+ - [Lectura Recomendada](https://medium.com/google-earth/our-latest-additions-to-the-earth-engine-data-catalog-ded9c563f676)
 
 
 ## ¿Cómo utilizar GEE?
@@ -37,7 +39,11 @@
 Ambos son clientes que se conectan a la API de GEE.
 
 ## Repositorio del curso en GEE
-  https://code.earthengine.google.com/?accept_repo=users/santiagobanchero/curso-gee
+
+ - https://code.earthengine.google.com/?accept_repo=users/santiagobanchero/curso-gee
+ - Ese repositorio está versionado con [Git](https://git-scm.com/)
+ 
+![](imgs/repo.png)
 
 
 ## ¿Cómo se corre un scripts en CE?
