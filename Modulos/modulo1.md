@@ -13,6 +13,9 @@
     - __Assets__: Espacio de almacenamiento de nuestros datos, de __*manera gratuita*__ disponemos de __¡¡250GB!!__
  - __Editor de código fuente:__ 
 
+
+Pueden acceder al listado de "Atajos" o shortcuts con __Ctrl + Shift + h__
+
 ## Los datos disponibles
 
 ![Datos-Disponibles](imgs/catalogo.png)
