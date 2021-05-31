@@ -180,6 +180,63 @@ Map.addLayer(fc_deptos, {}, "Deptos")
 Map.centerObject(partido_azul)
 ```
 
+
+
+
+## _map_: ¿qué hacer en lugar de un bucle for?
+
+* ¿Por qué no utilizar bucles en GEE? [Lectura recomendada](https://developers.google.com/earth-engine/guides/client_server#looping)
+* ¿Qué hace _map_? [Vamos a un ppt](https://docs.google.com/presentation/d/1iZtkBNzl2HBWFT0wEhwCov89kyiBO7rSHcmMa6WNMa8/edit#slide=id.g2274af231f_0_100)
+
+GEE maneja un esquema de funciones de __Map/Reduce__
+
+```Javascript
+// Ejemplo 8
+var ic_landsat8_SR = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR");
+
+var periodo_1 = {
+  start_date: "2017-01-01",
+  end_date:   "2017-12-31",
+}
+
+var ic_2017 = ic_landsat8_SR
+                  .filterBounds(limite)
+                  .filterDate(periodo_1.start_date, periodo_1.end_date)
+                  .filterMetadata("CLOUD_COVER", "less_than", 10)
+                  .select(["B2","B3","B4","B5","B6"]);
+
+print("# escenas", ic_2017.size())
+
+var ic_2017_calc = ic_2017.map(function(img){
+    
+    var calculada = img.select("B5").divide(1000).ceil().toByte();
+    
+    return calculada;
+  
+});
+
+print(ic_2017_calc)
+
+Map.addLayer(ic_2017_calc, {bands:["B5"],min:1, max: 1, palette: ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628']}, "Calculada")
+
+```
+
+## Operadores de reducción.
+
+```Javascript
+var ic_2017_calc = ic_2017.map(function(img){
+    var calculada = img.select("B2").gte(520);
+
+    return calculada;
+});
+
+var frecuencias = ic_2017_calc.reduce(ee.Reducer.sum())
+Map.addLayer(frecuencias, {min:0, max: 12}, "Frecuencias")
+```
+
+
+
+
 ## Operadores de ee.Image
 
 ### Operaciones sobre ee.Image
@@ -279,58 +336,6 @@ mosaico_discreto = mosaico_discreto.where(nubes, 0);
 
 ```
 ![hwhere](imgs/where.png)
-
-
-## _map_: ¿qué hacer en lugar de un bucle for?
-
-* ¿Por qué no utilizar bucles en GEE? [Lectura recomendada](https://developers.google.com/earth-engine/guides/client_server#looping)
-* ¿Qué hace _map_? [Vamos a un ppt](https://docs.google.com/presentation/d/1iZtkBNzl2HBWFT0wEhwCov89kyiBO7rSHcmMa6WNMa8/edit#slide=id.g2274af231f_0_100)
-
-GEE maneja un esquema de funciones de __Map/Reduce__
-
-```Javascript
-// Ejemplo 8
-var ic_landsat8_SR = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR");
-
-var periodo_1 = {
-  start_date: "2017-01-01",
-  end_date:   "2017-12-31",
-}
-
-var ic_2017 = ic_landsat8_SR
-                  .filterBounds(limite)
-                  .filterDate(periodo_1.start_date, periodo_1.end_date)
-                  .filterMetadata("CLOUD_COVER", "less_than", 10)
-                  .select(["B2","B3","B4","B5","B6"]);
-
-print("# escenas", ic_2017.size())
-
-var ic_2017_calc = ic_2017.map(function(img){
-    
-    var calculada = img.select("B5").divide(1000).ceil().toByte();
-    
-    return calculada;
-  
-});
-
-print(ic_2017_calc)
-
-Map.addLayer(ic_2017_calc, {bands:["B5"],min:1, max: 1, palette: ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628']}, "Calculada")
-
-```
-
-## Operadores de reducción.
-
-```Javascript
-var ic_2017_calc = ic_2017.map(function(img){
-    var calculada = img.select("B2").gte(520);
-
-    return calculada;
-});
-
-var frecuencias = ic_2017_calc.reduce(ee.Reducer.sum())
-Map.addLayer(frecuencias, {min:0, max: 12}, "Frecuencias")
-```
 
 # Referencias
 
